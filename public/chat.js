@@ -9,15 +9,24 @@ var btn = document.getElementById('send')
 var output = document.getElementById('output')
 var feedback = document.getElementById('feedback')
 
+
+
 // Emit Events
 
-btn.addEventListener('click' , () => {
+$(document).ready(function(){
+    $("#form").submit(function(e){
+        e.preventDefault()
+        console.log('Jquery Works')
 
-  socket.emit('chat' , {
-    handle : handle.value,
-    message : message.value
-    })
-})
+        socket.emit('chat' , {
+          handle : handle.value,
+          message : message.value
+          })
+    });
+});
+
+
+
 
 // Event Listener For typing...
 
@@ -31,6 +40,17 @@ socket.on('chat' , (data) => {
   feedback.innerHTML = ""
   message.value = ""
   output.innerHTML += `<p> <strong> ${data.handle} </strong> : ${data.message} </p>`
+
+//Scroll
+
+$(document).ready(function(){
+
+$('#chat-window').stop().animate ({
+  scrollTop: $('#chat-window')[0].scrollHeight
+});
+
+});
+
 })
 
 
