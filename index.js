@@ -1,37 +1,35 @@
 var express = require('express')
 var socket = require('socket.io')
 
-
 var app = express();
 
+// Init Server
 
 var server = app.listen(3000, (req,res) => {
- console.log('We Are Live On Port 3000')
+ console.log('Express Server Is Live On Port 3000')
 })
 
-
-app.get('/' , (req,res) {
-
-  res.send()
-
-})
+// Render Html Page From Public Folder
 
 app.use(express.static('public'))
-
 
 // Socket Setup
 
 var io = socket(server)
 
 io.on('connection' , ( socket ) => {
-  console.log("Socket Connection Estiablished Between Client Browser And Server")
-  console.log("Data Can Now Be Transfered To And Fro")
 
-  // Unique Id For Each Connection
-  console.log (socket.id)
+// 'chat' is the name of the object being received and sent
+// (data) is the content of the object being received and sent back
 
   socket.on('chat' , (data) => {
+    // Recieving individual socket's data as an object from front end and
+    // emitting/sending to all sockets connected to the server
     io.sockets.emit('chat' , data)
+  })
+
+  socket.on('typing' , (data) => {
+    socket.broadcast.emit('typing', data)
   })
 
 })
