@@ -9,6 +9,13 @@ var server = app.listen(3000, (req,res) => {
  console.log('We Are Live On Port 3000')
 })
 
+
+app.get('/' , (req,res) {
+
+  res.send()
+
+})
+
 app.use(express.static('public'))
 
 
@@ -22,5 +29,9 @@ io.on('connection' , ( socket ) => {
 
   // Unique Id For Each Connection
   console.log (socket.id)
+
+  socket.on('chat' , (data) => {
+    io.sockets.emit('chat' , data)
+  })
 
 })
