@@ -4,14 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "author": "Rohito",
   "license": "ISC",
   "dependencies": {
-    "ejs": "^2.6.1",
-    "express": "^4.16.3",
-    "path": "^0.12.7"
+    "express": "^4.16.3"
   },
   "devDependencies": {
     "nodemon": "^1.18.3",
