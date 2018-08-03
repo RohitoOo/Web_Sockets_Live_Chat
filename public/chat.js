@@ -1,5 +1,5 @@
 // Connect to Server
-var socket = io.connect('http://localhost:3000')
+var socket = io.connect('http://139.59.24.89:3000')
 
 // Query DOM
 
