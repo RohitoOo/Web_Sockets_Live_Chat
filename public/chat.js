@@ -25,9 +25,6 @@ $(document).ready(function(){
     });
 });
 
-
-
-
 // Event Listener For typing...
 
 message.addEventListener('keypress' , () => {
