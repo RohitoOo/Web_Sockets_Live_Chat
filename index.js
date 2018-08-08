@@ -5,7 +5,7 @@ var app = express();
 
 // Init Server
 
-var server = app.listen(3000, (req,res) => {
+var server = app.listen(process.env.PORT || 3000, (req,res) => {
  console.log('Express Server Is Live On Port 3000')
 })
 
