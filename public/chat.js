@@ -8,21 +8,36 @@ var handle = document.getElementById('handle')
 var btn = document.getElementById('send')
 var output = document.getElementById('output')
 var feedback = document.getElementById('feedback')
+var joined = document.getElementById('joined')
+
 
 
 
 // Emit Events
 
 $(document).ready(function(){
-    $("#form").submit(function(e){
-        e.preventDefault()
-        console.log('Jquery Works')
 
+    $("#form").submit(function(e){
+    e.preventDefault()
+
+        // Send Message From Client To Server
         socket.emit('chat' , {
           handle : handle.value,
           message : message.value
           })
     });
+});
+
+$("#formJoined").submit(function(e){
+  e.preventDefault()
+
+$("#form").css({'display' : '' });
+$("#handle").val(e.target.handle.value)
+$("#formJoined").css('display' , 'none');
+$("#feedback").css('display' , '')
+
+socket.emit('join', {UserName: handle.value });
+
 });
 
 // Event Listener For typing...
@@ -42,15 +57,21 @@ socket.on('chat' , (data) => {
 
 $(document).ready(function(){
 
-$('#chat-window').stop().animate ({
-  scrollTop: $('#chat-window')[0].scrollHeight
-});
-
-});
-
+      $('#chat-window').stop().animate ({
+        scrollTop: $('#chat-window')[0].scrollHeight
+      });
+    });
 })
-
 
 socket.on('typing' , (data) => {
   feedback.innerHTML = data + " is typing..."
+})
+
+
+socket.on('join' , (data) => {
+
+  joined.innerHTML = data.UserName + " just joined the group chat..."
+  setInterval( ()=> {
+    joined.innerHTML = ""
+  },2000)
 })
