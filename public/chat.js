@@ -1,5 +1,5 @@
 // Connect to Server
-var socket = io.connect('https://pacific-springs-28604.herokuapp.com')
+var socket = io.connect('http://localhost:3000')
 
 // Query DOM
 
@@ -9,9 +9,6 @@ var btn = document.getElementById('send')
 var output = document.getElementById('output')
 var feedback = document.getElementById('feedback')
 var joined = document.getElementById('joined')
-
-
-
 
 // Emit Events
 
@@ -25,6 +22,8 @@ $(document).ready(function(){
           handle : handle.value,
           message : message.value
           })
+
+        e.target.message.value = ""
     });
 });
 
@@ -50,7 +49,7 @@ message.addEventListener('keypress' , () => {
 
 socket.on('chat' , (data) => {
   feedback.innerHTML = ""
-  message.value = ""
+
   output.innerHTML += `<p> <strong> ${data.handle} </strong> : ${data.message} </p>`
 
 //Scroll
