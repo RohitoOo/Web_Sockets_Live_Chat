@@ -1,5 +1,6 @@
 var express = require("express")
 var socket = require("socket.io")
+const path = require("path")
 
 var app = express()
 
@@ -11,8 +12,7 @@ var server = app.listen(process.env.PORT || 5000, (req, res) => {
 })
 
 // Render Html Page From Public Folder
-app.use(express.static("public"))
-
+app.use(express.static(__dirname + "/public"))
 // Socket Setup
 var io = socket(server)
 
