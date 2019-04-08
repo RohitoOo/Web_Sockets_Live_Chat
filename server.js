@@ -1,15 +1,20 @@
 var express = require("express")
 var socket = require("socket.io")
 const path = require("path")
+const cors = require("cors")
 
 var app = express()
 
 // Init Server
 
+const port = process.env.PORT || 5000
+
 // Heroku Setup (  process.env.PORT  )
-var server = app.listen(process.env.PORT || 5000, (req, res) => {
+var server = app.listen(port, (req, res) => {
   console.log("Express Server Is Live On Port 5000")
 })
+
+app.use(cors())
 
 // Render Html Page From Public Folder
 app.use(express.static(__dirname + "/public"))

@@ -1,5 +1,5 @@
 // Connect to Server
-var socket = io.connect("https://whatsapp-socketio.herokuapp.com")
+var socket = io.connect("http://localhost:5000")
 
 // Query DOM
 
