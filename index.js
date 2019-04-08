@@ -6,26 +6,12 @@ var app = express()
 // Init Server
 
 // Heroku Setup (  process.env.PORT  )
-var server = app.listen(process.env.PORT || 5000, (req, res) => {
-  console.log("Express Server Is Live On Port 5000")
+var server = app.listen(process.env.PORT || 3000, (req, res) => {
+  console.log("Express Server Is Live On Port 3000")
 })
 
-// Configuration
-
-app.configure(function() {
-  app.use(express.bodyParser())
-  app.use(express.methodOverride())
-  app.use(app.router)
-  app.use(express.static("public"))
-})
-
-// Heroku won't actually allow us to use WebSockets
-// so we have to setup polling instead.
-// https://devcenter.heroku.com/articles/using-socket-io-with-node-js-on-heroku
-io.configure(function() {
-  io.set("transports", ["xhr-polling"])
-  io.set("polling duration", 10)
-})
+// Render Html Page From Public Folder
+app.use(express.static("public"))
 
 // Socket Setup
 var io = socket(server)
