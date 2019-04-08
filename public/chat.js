@@ -28,7 +28,11 @@ $(document).ready(function() {
 
 $("#formJoined").submit(function(e) {
   e.preventDefault()
-
+  console.log(
+    ":::::USER JOINED!!! :::::",
+    socket.io.opts.hostname,
+    socket.io.opts.port
+  )
   $("#form").css({ display: "" })
   $("#handle").val(e.target.handle.value)
   $("#formJoined").css("display", "none")

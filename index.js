@@ -6,8 +6,8 @@ var app = express()
 // Init Server
 
 // Heroku Setup (  process.env.PORT  )
-var server = app.listen(process.env.PORT || 3000, (req, res) => {
-  console.log("Express Server Is Live On Port 3000")
+var server = app.listen(process.env.PORT || 5000, (req, res) => {
+  console.log("Express Server Is Live On Port 5000")
 })
 
 // Render Html Page From Public Folder
@@ -18,6 +18,7 @@ var io = socket(server)
 
 // Event Handler - Connection to each clinet socket
 io.on("connection", socket => {
+  console.log("::: User Connected :::", socket)
   // User Signed In
   socket.on("join", data => {
     io.sockets.emit("join", data)
