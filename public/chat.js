@@ -13,8 +13,6 @@ var joined = document.getElementById("joined")
 // Emit Events
 
 $(document).ready(function() {
-  alert("In")
-
   $("#form").submit(function(e) {
     e.preventDefault()
 
@@ -29,8 +27,6 @@ $(document).ready(function() {
 })
 
 $("#formJoined").submit(function(e) {
-
-  alert("Joined")
   e.preventDefault()
   console.log(
     ":::::USER JOINED!!! :::::",
